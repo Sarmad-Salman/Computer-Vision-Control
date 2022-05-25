@@ -17,7 +17,7 @@ objpoints = []  # 3d point in real world space
 imgpoints = []  # 2d points in image plane
 
 # Reading all jpg images in Pictures Directory
-images = glob.glob('/media/tayyab/UUI/Project/Final Images/*.jpg')
+images = glob.glob('/media/*.jpg')
 
 if images == False:                                 # If No Image is Detected
     print("No Image detected in this resolution")
@@ -74,7 +74,7 @@ cal_flag, cam_matrix, dist_coeff, r_vec, t_vec = cv2.calibrateCamera(objpoints, 
 #------------------------------------------------------------------------------------------------------------------------
 #-------------------------UNDISTORTION ALGOS-------------------------
 
-img = cv2.imread('/media/tayyab/UUI/Project/Final Images/opencv_frame_2.jpg')
+img = cv2.imread('/media/specific_image.jpg')
 h,  w = img.shape[:2]
 newcam_mtx, roi = cv2.getOptimalNewCameraMatrix(cam_matrix, dist_coeff, (w, h), 1, (w, h))
 
@@ -83,7 +83,7 @@ dst = cv2.undistort(img, cam_matrix, dist_coeff, None, newcam_mtx)
 # crop the image
 x, y, w, h = roi
 dst = dst[y:y+h, x:x+w]
-cv2.imwrite('/media/tayyab/UUI/Project/calibresult1.png', dst)
+cv2.imwrite('/media/calibresult1.png', dst)
 
 # undistort2
 mapx, mapy = cv2.initUndistortRectifyMap(cam_matrix, dist_coeff, None, newcam_mtx, (w, h), 5)
@@ -91,7 +91,7 @@ dst = cv2.remap(img, mapx, mapy, cv2.INTER_LINEAR)
 # crop the image
 x, y, w, h = roi
 dst = dst[y:y+h, x:x+w]
-cv2.imwrite('/media/tayyab/UUI/Project/calibresult2.png', dst)
+cv2.imwrite('/media/calibresult2.png', dst)
 
 #------------------------------------------------------------------------------------------------------------------------
 #-------------------------RE-PROJECTION ERROR-------------------------
