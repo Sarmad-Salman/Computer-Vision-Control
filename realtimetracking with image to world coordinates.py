@@ -13,7 +13,7 @@ objp[:, :2] = np.mgrid[0:7, 0:7].T.reshape(-1, 2) * 2.2
 objpoints = []  # 3d point in real world space
 imgpoints = []  # 2d points in image plane.
 #Importing Images
-images = glob.glob('/home/pi/Desktop/Work/Work/New folder/Final Images/*.jpg')                                         
+images = glob.glob('/home/*.jpg')                                         
 if images == False:                                 # If No Image is Detected
     print("No Image detected in this resolution")
 else:                                               #If Images are Detected
